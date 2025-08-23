@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Linavs18/FitTack/blob/dev/fittrack/public/img/Fittrack-logo.png" alt="FitTrack Logo" width="500px">
+  <img src="https://github.com/Linavs18/FitTrack-sena/blob/dev/fittrack/public/img/Fittrack-logo.png" alt="FitTrack Logo" width="500px">
 </p>
 
 ## 🛠️ FITTRACK
