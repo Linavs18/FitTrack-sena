@@ -133,7 +133,7 @@
                 <p class="mb-0">
                     ¿Ya tienes una cuenta? 
                     <a href="{{ route('login') }}" class="auth-link">
-                        Inicia sesión aquí
+                        Inicia sesión 
                     </a>
                 </p>
             </div>
