@@ -34,7 +34,6 @@ simples.
   - Usuarios 
 
 - 📊 **Reportes y exportación**:
-  - Generación de reportes en **PDF**
   - Estadísticas visuales
 
 - 🧭 **Interfaz y usabilidad**:
