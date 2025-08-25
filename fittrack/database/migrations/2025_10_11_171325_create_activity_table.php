@@ -12,17 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('activity', function (Blueprint $table) {
-            $table->id()->comment('Id de la actividad');
-            $table->foreignId('user_id')->constrained('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade')
-            ->comment('Fk de tabla users');
-            $table->string('type_activity')->comment('tipo de actividad');
-            $table->date('date');
-            $table->time('time');
-            $table->decimal('distance', 6, 2)->nullable();
-            $table->unsignedInteger('calories')->nullable();;
-            $table->timestamps();
+                $table->id();
+                $table->unsignedBigInteger('user_id');
+                $table->string('type_activity');
+                $table->date('date');
+                $table->integer('duration')->default(0);; // duración total en segundos
+                $table->float('distance')->nullable();
+                $table->float('calories')->nullable();
+                $table->timestamps();
         });
     }
 

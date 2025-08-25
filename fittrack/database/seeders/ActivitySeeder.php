@@ -18,7 +18,7 @@ class ActivitySeeder extends Seeder
             'user_id' => 1,
             'type_activity' => 'Running',
             'date' => Carbon::now()->subDays(2)->toDateString(),
-            'time' => '00:45:30',
+            'duration' => 45 * 60 + 30, // 00:45:30 en segundos
             'distance' => 5.25,
             'calories' => 450,
         ]);
@@ -27,7 +27,7 @@ class ActivitySeeder extends Seeder
             'user_id' => 2,
             'type_activity' => 'Cycling',
             'date' => Carbon::now()->subDay()->toDateString(),
-            'time' => '01:20:15',
+            'duration' => 1 * 3600 + 20 * 60 + 15, // 01:20:15 en segundos
             'distance' => 25.80,
             'calories' => 700,
         ]);
@@ -36,7 +36,7 @@ class ActivitySeeder extends Seeder
             'user_id' => 3,
             'type_activity' => 'Swimming',
             'date' => Carbon::now()->toDateString(),
-            'time' => '00:30:00',
+            'duration' => 30 * 60, // 00:30:00 en segundos
             'distance' => 1.20,
             'calories' => 300,
         ]);

@@ -14,18 +14,32 @@ class Activity extends Model
     // Campos asignables en masa (mass assignment)
     protected $fillable = [
         'user_id',
-        'type_activity',
+        'type_activity', 
         'date',
-        'time',
+        'duration',      // ← ASEGÚRATE DE QUE ESTÉ AQUÍ
         'distance',
-        'calories',
+        'calories'
     ];
 
-    /**
-     * Relación con User (muchas actividades pertenecen a un usuario).
-     */
+    protected $casts = [
+        'date' => 'date',
+        'distance' => 'float',
+        'calories' => 'integer',
+        'duration' => 'integer'  // ← Y AQUÍ TAMBIÉN
+    ];
+
+    // Relación con User (cuando la implementes)
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // Accessor para formatear la duración
+    public function getFormattedDurationAttribute()
+    {
+        $hours = floor($this->duration / 3600);
+        $minutes = floor(($this->duration % 3600) / 60);
+        
+        return sprintf('%02d:%02d', $hours, $minutes);
     }
 }
