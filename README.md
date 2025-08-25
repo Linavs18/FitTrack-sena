@@ -62,7 +62,6 @@ cd FitTrack-sena/fittrack
 
 # 2. Instala dependencias
 composer install
-npm install && npm run build
 
 # 3. Configura el archivo .env
 cp .env.example .env
