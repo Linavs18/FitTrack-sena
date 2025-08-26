@@ -4,11 +4,16 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('activity.update', $activity->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        
-        <div class="mb-3">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Editar Actividad</h5>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('activity.update', $activity->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="mb-3">
             <label for="type_activity" class="form-label">Tipo de Actividad</label>
             <input 
                 type="text" 
@@ -101,7 +106,9 @@
                 <i class="fas fa-save"></i> Actualizar Actividad
             </button>
         </div>
-    </form>
+        </form>
+        </div>
+    </div>
 </div>
 @endsection
 
