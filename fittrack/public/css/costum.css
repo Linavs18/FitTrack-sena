@@ -4,7 +4,7 @@
 
 /* IMPORTANTE: Body por defecto blanco para el dashboard */
 body {
-    background: white;
+    background: linear-gradient(to bottom, #4CAF50 0%, #4CAF50 250px, #f8f9fa 250px, #f8f9fa 100%);
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -19,9 +19,9 @@ body.register-page {
 }
 
 .custom-navbar {
-    background: linear-gradient(135deg, #4CAF50, #45a049) !important;
-    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2) !important;
-    backdrop-filter: blur(10px);
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none;
     border: none !important;
 }
 
@@ -34,6 +34,77 @@ body.register-page {
 
 .custom-navbar .nav-link:hover {
     color: #f0f0f0 !important;
+}
+
+.activity-card {
+    border: 1px solid #e9ecef;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.activity-card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+
+.activity-card-header h5 {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.activity-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.activity-card .card-body {
+    padding: 1.5rem;
+}
+
+.activity-card .card-body span {
+    color: #6c757d;
+}
+
+.activity-card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 1rem 1.5rem;
+    text-align: right;
+}
+
+.filter-buttons .btn-filter {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.filter-buttons .btn-filter:hover {
+    background-color: #e9ecef;
+}
+
+.filter-buttons .btn-filter.active {
+    background-color: #2196F3;
+    color: #fff;
+    border-color: #2196F3;
+}
+
+.navbar-vertical .navbar-nav>.nav-item .nav-link.active {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    font-weight: 600;
+    border-radius: 0.5rem;
 }
 
 /* Título principal */
@@ -58,43 +129,6 @@ body.register-page {
     border-color: #1e7e34;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Tabla de actividades */
-.activities-table {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Header de la tabla */
-.activities-table-header {
-    background-color: #2196F3;
-    color: white;
-}
-
-.activities-table-header th {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-    padding: 15px 10px;
-}
-
-/* Contenido de las celdas */
-.activities-table tbody td {
-    color: #2196F3;
-    font-weight: 500;
-    padding: 12px 10px;
-    vertical-align: middle;
-    border-bottom: 1px solid #e9ecef;
-}
-
-/* ID de actividad */
-.activity-id {
-    color: #2196F3;
-    font-weight: bold;
-    font-size: 1.1rem;
 }
 
 /* Badge para tipo de actividad */
@@ -222,7 +256,8 @@ body.register-page {
 }
 
 .stats-card-body {
-    padding: 1.5rem;
+    padding: 2rem;
+    background-color: #fff;
 }
 
 .stats-item {

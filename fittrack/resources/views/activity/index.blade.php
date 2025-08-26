@@ -4,96 +4,80 @@
 
 @section('content')
 
-<label class="fs-2 text-primary">Lista de Actividades</label>
+<label class="fs-2 text-white">Lista de Actividades</label>
 
-<div class="row">
-    <div class="col-lg-12 mb-4 d-grid gap-2 d-md-block">
-        <a href="{{ route('activity.create') }}" class="btn btn-primary">
+<div class="row mb-4">
+    <div class="col-md-12">
+        <a href="{{ route('activity.create') }}" class="btn btn-primary mb-3">
             <i class="fas fa-plus"></i> Crear Actividad
         </a>
+        <div class="filter-buttons">
+            <a href="{{ route('activity.index') }}" class="btn btn-filter {{ !request('type_activity') ? 'active' : '' }}">Todos</a>
+            @foreach($activityTypes as $type)
+                <a href="{{ route('activity.index', ['type_activity' => $type]) }}" class="btn btn-filter {{ request('type_activity') == $type ? 'active' : '' }}">{{ ucfirst(strtolower($type)) }}</a>
+            @endforeach
+        </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-12 mb-4">
-        <table id="table_data" class="table table-striped align-items-center text-center text-white">
-            <thead style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white;">
-                <tr>
-                    <th style="color: white">Id</th>
-                    <th style="color: white">Tipo de Actividad</th>
-                    <th style="color: white">Fecha</th>
-                    <th style="color: white">Duración</th>
-                    <th style="color: white">Distancia</th>
-                    <th style="color: white">Calorías</th>
-                    <th style="color: white">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($activities as $activity)
-                <tr>
-                    <td><strong style="color: #2196F3;">{{ $activity->id }}</strong></td>
-                    <td>
-                        <span class="badge" style="background-color: #4CAF50; color: white;">
-                            {{ $activity->type_activity }}
-                        </span>
-                    </td>
-                    <td>{{ \Carbon\Carbon::parse($activity->date)->format('d/m/Y') }}</td>
-                    <td>
+    @forelse ($activities as $activity)
+        @php
+            $activityIcons = [
+                'Caminata' => 'fas fa-walking',
+                'Carrera' => 'fas fa-running',
+                'Ciclismo' => 'fas fa-biking',
+                'Natación' => 'fas fa-swimmer',
+                'Gimnasio' => 'fas fa-dumbbell',
+                'Otro' => 'fas fa-question-circle',
+            ];
+            $icon = $activityIcons[$activity->type_activity] ?? 'fas fa-question-circle';
+        @endphp
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card activity-card h-100">
+                <div class="card-header activity-card-header">
+                    <div class="d-flex align-items-center">
+                        <i class="{{ $icon }} fa-2x me-3"></i>
+                        <h5 class="mb-0">{{ $activity->type_activity }}</h5>
+                    </div>
+                    <span class="activity-date">{{ \Carbon\Carbon::parse($activity->date)->format('d/m/Y') }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span><i class="far fa-clock me-2"></i> Duración</span>
                         @php
                             $hours = floor($activity->duration / 3600);
                             $minutes = floor(($activity->duration % 3600) / 60);
-                            $seconds = $activity->duration % 60;
                         @endphp
-                        <span class="badge" style="background-color: #2196F3; color: white;">
-                            {{ sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds) }}
-                        </span>
-                    </td>
-                    <td>
-                        @if($activity->distance)
-                            <strong style="color: #4CAF50;">{{ number_format($activity->distance, 2) }}</strong> 
-                            <small class="text-muted">km</small>
-                        @else
-                            <span class="text-muted">-</span>
-                        @endif
-                    </td>
-                    <td>
-                        @if($activity->calories)
-                            <strong style="color: #2196F3;">{{ number_format($activity->calories) }}</strong> 
-                            <small class="text-muted">cal</small>
-                        @else
-                            <span class="text-muted">-</span>
-                        @endif
-                    </td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('activity.edit', $activity->id) }}" 
-                               class="btn btn-success btn-sm"
-                               title="Editar">
-                                <i class="far fa-edit"></i>
-                            </a>
-
-                            <button type="button" 
-                                    class="btn btn-outline-danger btn-sm" 
-                                    onclick="confirmDelete({{ $activity->id }})"
-                                    title="Eliminar">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-
-                        <form id="delete-form-{{ $activity->id }}" 
-                              action="{{ route('activity.destroy', $activity->id) }}" 
-                              method="POST" 
-                              style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        @if($activities->isEmpty())
+                        <span class="badge activity-duration-badge">{{ $hours }}h {{ $minutes }}m</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span><i class="fas fa-route me-2"></i> Distancia</span>
+                        <strong class="activity-distance">{{ $activity->distance ? number_format($activity->distance, 2) . ' km' : '-' }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-fire me-2"></i> Calorías</span>
+                        <strong class="activity-calories">{{ $activity->calories ? number_format($activity->calories) . ' cal' : '-' }}</strong>
+                    </div>
+                </div>
+                <div class="card-footer activity-card-footer">
+                    <div class="btn-group">
+                        <a href="{{ route('activity.edit', $activity->id) }}" class="btn btn-sm btn-edit-activity">
+                            <i class="far fa-edit"></i> Editar
+                        </a>
+                        <button type="button" class="btn btn-sm btn-delete-activity" onclick="confirmDelete({{ $activity->id }})">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                    <form id="delete-form-{{ $activity->id }}" action="{{ route('activity.destroy', $activity->id) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </div>
+            </div>
+        </div>
+    @empty
+        <div class="col-12">
             <div class="text-center py-5">
                 <div class="alert" style="background: linear-gradient(135deg, #E8F5E8, #E3F2FD); border: 1px solid #4CAF50;">
                     <i class="fas fa-info-circle fa-2x mb-3" style="color: #4CAF50;"></i>
@@ -112,40 +96,32 @@
 @if($activities->count() > 0)
 <div class="row mt-4">
     <div class="col-12">
-        <div class="card" style="border: 2px solid #4CAF50;">
-            <div class="card-header" style="background: linear-gradient(135deg, #4CAF50, #2196F3);">
-                <h5 class="card-title mb-0 text-white">
-                    <i class="fas fa-chart-bar"></i> Resumen de Actividades
-                </h5>
+        <div class="stats-card">
+            <div class="stats-card-header">
+                <h5 class="stats-card-title"><i class="fas fa-chart-line"></i> Resumen de Actividades</h5>
             </div>
             <div class="card-body">
                 <div class="row text-center">
-                    <div class="col-md-3">
-                        <div class="border-end" style="border-color: #4CAF50 !important;">
-                            <h3 style="color: #4CAF50;">{{ $activities->count() }}</h3>
-                            <small class="text-muted">Total Actividades</small>
-                        </div>
+                    <div class="col-md-3 stats-item">
+                        <div class="stats-number-green">{{ $activities->count() }}</div>
+                        <div class="stats-label">Total Actividades</div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="border-end" style="border-color: #2196F3 !important;">
-                            @php
-                                $totalDuration = $activities->sum('duration');
-                                $totalHours = floor($totalDuration / 3600);
-                                $totalMinutes = floor(($totalDuration % 3600) / 60);
-                            @endphp
-                            <h3 style="color: #2196F3;">{{ $totalHours }}h {{ $totalMinutes }}m</h3>
-                            <small class="text-muted">Tiempo Total</small>
-                        </div>
+                    <div class="col-md-3 stats-item">
+                        @php
+                            $totalDuration = $activities->sum('duration');
+                            $totalHours = floor($totalDuration / 3600);
+                            $totalMinutes = floor(($totalDuration % 3600) / 60);
+                        @endphp
+                        <div class="stats-number-blue">{{ $totalHours }}h {{ $totalMinutes }}m</div>
+                        <div class="stats-label">Tiempo Total</div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="border-end" style="border-color: #4CAF50 !important;">
-                            <h3 style="color: #4CAF50;">{{ number_format($activities->whereNotNull('distance')->sum('distance'), 2) }}</h3>
-                            <small class="text-muted">Kilómetros</small>
-                        </div>
+                    <div class="col-md-3 stats-item">
+                        <div class="stats-number-green">{{ number_format($activities->whereNotNull('distance')->sum('distance'), 2) }}</div>
+                        <div class="stats-label">Kilómetros</div>
                     </div>
-                    <div class="col-md-3">
-                        <h3 style="color: #2196F3;">{{ number_format($activities->whereNotNull('calories')->sum('calories')) }}</h3>
-                        <small class="text-muted">Calorías</small>
+                    <div class="col-md-3 stats-item">
+                        <div class="stats-number-blue">{{ number_format($activities->whereNotNull('calories')->sum('calories')) }}</div>
+                        <div class="stats-label">Calorías</div>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@
 {{-- Incluir estilos personalizados --}}
 
 @section('content')
-<label class="activities-title">Dashboard de Actividades</label>
+<label class="activities-title" style="color: white">Dashboard de Actividades</label>
 
 {{-- Sección de Gráficas --}}
 @if($activities->count() > 0)

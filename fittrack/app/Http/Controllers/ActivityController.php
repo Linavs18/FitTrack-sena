@@ -36,10 +36,18 @@ class ActivityController extends Controller
         'after'             => 'El campo :attribute debe ser posterior a la hora de inicio.'
     ];
 
-    public function index()
+    public function index(Request $request)
     {
-        $activities = Activity::where('user_id', auth()->id())->get();
-        return view('activity.index', compact('activities'));
+        $query = Activity::where('user_id', auth()->id());
+
+        if ($request->has('type_activity') && $request->type_activity != '') {
+            $query->where('type_activity', $request->type_activity);
+        }
+
+        $activities = $query->get();
+        $activityTypes = ['CORRER', 'NADAR', 'CICLISMO', 'CAMINATA', 'GIMNASIO', 'YOGA', 'OTROS'];
+
+        return view('activity.index', compact('activities', 'activityTypes'));
     }
 
     /**
