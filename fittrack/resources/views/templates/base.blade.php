@@ -27,7 +27,7 @@
 
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show">
     <div class="min-height-90 position-absolute w-100" style="background-color: #4CAF50;"></div>
     @include('templates.nav')
 
