@@ -1,4 +1,5 @@
-<nav class="navbar navbar-top navbar-expand navbar-dark border-bottom custom-navbar" id="navbarBlur" data-scroll="false">
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl custom-navbar"
+     id="navbarBlur" data-scroll="false">
   <div class="container-fluid py-1 px-3">
     <a aria-label="breadcrumb" href="https://www.sena.edu.co" class="navbar-brand font-weight-bolder text-white" target="_blank">          
       <img src="{{ asset('img/sena-logo.png') }}" alt="logo-sena" width="70px" height="70px">
