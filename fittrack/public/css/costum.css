@@ -36,10 +36,6 @@ body.register-page {
     color: #f0f0f0 !important;
 }
 
-.sidenav.bg-white {
-    background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
 .activity-card {
     border: 1px solid #e9ecef;
     border-radius: 15px;
@@ -102,6 +98,13 @@ body.register-page {
     background-color: #4CAF50;
     color: #fff;
     border-color: #4CAF50;
+}
+
+.navbar-vertical .navbar-nav>.nav-item .nav-link.active {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    font-weight: 600;
+    border-radius: 0.5rem;
 }
 
 /* Título principal */

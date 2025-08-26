@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('view.*') ? 'active' : '' }}" href="{{ route('welcome') }}">
+        <a class="nav-link {{ request()->routeIs('welcome') ? 'active' : '' }}" href="{{ route('welcome') }}">
           <i class="fas fa-tachometer-alt text-dark"></i>
           <span class="nav-link-text ms-3">Dashboard</span>
         </a>
