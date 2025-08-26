@@ -95,9 +95,9 @@ body.register-page {
 }
 
 .filter-buttons .btn-filter.active {
-    background-color: #4CAF50;
+    background-color: #2196F3;
     color: #fff;
-    border-color: #4CAF50;
+    border-color: #2196F3;
 }
 
 .navbar-vertical .navbar-nav>.nav-item .nav-link.active {

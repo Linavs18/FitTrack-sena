@@ -4,7 +4,7 @@
 
 @section('content')
 
-<label class="fs-2 text-primary">Lista de Actividades</label>
+<label class="fs-2 text-white">Lista de Actividades</label>
 
 <div class="row mb-4">
     <div class="col-md-12">
