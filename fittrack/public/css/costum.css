@@ -86,6 +86,24 @@ body.register-page {
     text-align: right;
 }
 
+.filter-buttons .btn-filter {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.filter-buttons .btn-filter:hover {
+    background-color: #e9ecef;
+}
+
+.filter-buttons .btn-filter.active {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
 /* Título principal */
 .activities-title {
     font-size: 2rem;

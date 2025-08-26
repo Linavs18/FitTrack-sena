@@ -7,23 +7,16 @@
 <label class="fs-2 text-primary">Lista de Actividades</label>
 
 <div class="row mb-4">
-    <div class="col-md-6">
-        <a href="{{ route('activity.create') }}" class="btn btn-primary">
+    <div class="col-md-12">
+        <a href="{{ route('activity.create') }}" class="btn btn-primary mb-3">
             <i class="fas fa-plus"></i> Crear Actividad
         </a>
-    </div>
-    <div class="col-md-6">
-        <form action="{{ route('activity.index') }}" method="GET">
-            <div class="input-group">
-                <select name="type_activity" class="form-control">
-                    <option value="">Todas las actividades</option>
-                    @foreach($activityTypes as $type)
-                        <option value="{{ $type }}" {{ request('type_activity') == $type ? 'selected' : '' }}>{{ $type }}</option>
-                    @endforeach
-                </select>
-                <button class="btn btn-secondary" type="submit"><i class="fas fa-filter"></i> Filtrar</button>
-            </div>
-        </form>
+        <div class="filter-buttons">
+            <a href="{{ route('activity.index') }}" class="btn btn-filter {{ !request('type_activity') ? 'active' : '' }}">Todos</a>
+            @foreach($activityTypes as $type)
+                <a href="{{ route('activity.index', ['type_activity' => $type]) }}" class="btn btn-filter {{ request('type_activity') == $type ? 'active' : '' }}">{{ ucfirst(strtolower($type)) }}</a>
+            @endforeach
+        </div>
     </div>
 </div>
 

@@ -45,7 +45,7 @@ class ActivityController extends Controller
         }
 
         $activities = $query->get();
-        $activityTypes = Activity::where('user_id', auth()->id())->distinct()->pluck('type_activity');
+        $activityTypes = ['CORRER', 'NADAR', 'CICLISMO', 'CAMINATA', 'GIMNASIO', 'YOGA', 'OTROS'];
 
         return view('activity.index', compact('activities', 'activityTypes'));
     }
