@@ -3,11 +3,12 @@
 @section('header', 'Actividades')
 
 @section('content')
-<label class="fs-2 text-success">Lista de Actividades</label>
+
+<label class="fs-2 text-primary">Lista de Actividades</label>
 
 <div class="row">
     <div class="col-lg-12 mb-4 d-grid gap-2 d-md-block">
-        <a href="{{ route('activity.create') }}" class="btn btn-success">
+        <a href="{{ route('activity.create') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> Crear Actividad
         </a>
     </div>
@@ -72,7 +73,7 @@
                             </a>
 
                             <button type="button" 
-                                    class="btn btn-danger btn-sm" 
+                                    class="btn btn-outline-danger btn-sm" 
                                     onclick="confirmDelete({{ $activity->id }})"
                                     title="Eliminar">
                                 <i class="fas fa-trash"></i>

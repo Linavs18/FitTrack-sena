@@ -7,7 +7,7 @@
     <ul class="navbar-nav ms-auto justify-content-end align-items-center">
       <li class="nav-item me-3 text-white">
         @auth
-          Bienvenido, <strong>{{ Auth::user()->fullname }}</strong>
+          Bienvenido, <strong>{{ Auth::user()->name }}</strong>
         @endauth
       </li>
       <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

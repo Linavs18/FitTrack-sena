@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/argon-dashboard.min.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('css/costum.css') }}?v=2">
 </head>
-<body>
+<body class="login-page">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
