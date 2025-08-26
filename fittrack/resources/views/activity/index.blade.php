@@ -6,11 +6,24 @@
 
 <label class="fs-2 text-primary">Lista de Actividades</label>
 
-<div class="row">
-    <div class="col-lg-12 mb-4 d-grid gap-2 d-md-block">
+<div class="row mb-4">
+    <div class="col-md-6">
         <a href="{{ route('activity.create') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> Crear Actividad
         </a>
+    </div>
+    <div class="col-md-6">
+        <form action="{{ route('activity.index') }}" method="GET">
+            <div class="input-group">
+                <select name="type_activity" class="form-control">
+                    <option value="">Todas las actividades</option>
+                    @foreach($activityTypes as $type)
+                        <option value="{{ $type }}" {{ request('type_activity') == $type ? 'selected' : '' }}>{{ $type }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-secondary" type="submit"><i class="fas fa-filter"></i> Filtrar</button>
+            </div>
+        </form>
     </div>
 </div>
 
