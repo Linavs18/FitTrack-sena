@@ -128,43 +128,6 @@ body.register-page {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Tabla de actividades */
-.activities-table {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Header de la tabla */
-.activities-table-header {
-    background-color: #2196F3;
-    color: white;
-}
-
-.activities-table-header th {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: none;
-    padding: 15px 10px;
-}
-
-/* Contenido de las celdas */
-.activities-table tbody td {
-    color: #2196F3;
-    font-weight: 500;
-    padding: 12px 10px;
-    vertical-align: middle;
-    border-bottom: 1px solid #e9ecef;
-}
-
-/* ID de actividad */
-.activity-id {
-    color: #2196F3;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
 /* Badge para tipo de actividad */
 .activity-type-badge {
     color: white;
