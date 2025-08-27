@@ -44,12 +44,12 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span><i class="far fa-clock me-2"></i> Duración</span>
+                        <span><i class="far fa-clock me-2" ></i> Duración</span>
                         @php
                             $hours = floor($activity->duration / 3600);
                             $minutes = floor(($activity->duration % 3600) / 60);
                         @endphp
-                        <span class="badge activity-duration-badge">{{ $hours }}h {{ $minutes }}m</span>
+                        <span class="badge activity-duration-badge" style="color: white">{{ $hours }}h {{ $minutes }}m</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <span><i class="fas fa-route me-2"></i> Distancia</span>
