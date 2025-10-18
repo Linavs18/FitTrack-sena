@@ -103,9 +103,13 @@ class AuthController extends Controller
      */
     public function login(Request $request) {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        'email' => 'required|email',
+        'password' => 'required',
+        'g-recaptcha-response' => 'required|captcha',
+    ], [
+        'g-recaptcha-response.required' => 'Por favor, confirma que no eres un robot.',
+        'g-recaptcha-response.captcha' => 'Error en la verificación del reCAPTCHA, intenta nuevamente.',
+    ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

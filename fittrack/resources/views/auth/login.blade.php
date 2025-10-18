@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/argon-dashboard.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('css/argon-dashboard.min.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('css/costum.css') }}?v=2">
+    {!! NoCaptcha::renderJs() !!}
 </head>
 <body class="login-page">
     <div class="auth-container">
@@ -77,6 +78,13 @@
                                 <i class="fas fa-key"></i>
                             </span>
                         </div>
+                    </div>
+                    {{-- 🧩 Aquí va el reCAPTCHA --}}
+                    <div class="form-group mt-3 text-center">
+                        {!! NoCaptcha::display() !!}
+                        @error('g-recaptcha-response')
+                            <div class="text-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-login">
